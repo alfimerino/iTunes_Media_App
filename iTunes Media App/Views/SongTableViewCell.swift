@@ -21,4 +21,12 @@ class SongTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+    
+    private lazy var artistName: UILabel = {
+       let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
+        label.adjustsFontForContentSizeCategory = true
+        label.setContentHuggingPriority(.required, for: .vertical)
+        return label
+    }()
 }
