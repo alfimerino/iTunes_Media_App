@@ -15,6 +15,9 @@ class SongsViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: view.frame)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
         tableView.delegate = self // datasource/delegate
         tableView.dataSource = self
         tableView.register(SongTableViewCell.self, forCellReuseIdentifier: SongTableViewCell.reuseID) // registering cell
