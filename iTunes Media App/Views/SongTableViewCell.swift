@@ -29,4 +29,22 @@ class SongTableViewCell: UITableViewCell {
         label.setContentHuggingPriority(.required, for: .vertical)
         return label
     }()
+    
+    private lazy var name: UILabel = {
+       let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
+        label.adjustsFontForContentSizeCategory = true
+        label.setContentHuggingPriority(.required, for: .vertical)
+        return label
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [name, artistName])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.alignment = .leading
+        stackView.spacing = 8
+        stackView.axis = .vertical
+        return stackView
+    }()
 }
