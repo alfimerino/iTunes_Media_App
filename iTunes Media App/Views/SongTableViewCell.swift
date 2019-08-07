@@ -9,10 +9,16 @@
 import Foundation
 import UIKit
 
+
 class SongTableViewCell: UITableViewCell {
     // instance property means you NEED an instantiated object to use it
     // use static when you aren't creating the object just yet
     static let reuseID = String(describing: self)
     
-    
+    private lazy var mediaImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
 }
