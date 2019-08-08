@@ -24,6 +24,17 @@ class SongsViewController: UIViewController {
         return tableView
     }()
     
+    lazy var artistName: UITableView = {
+        let artistName = UITableView(frame: view.frame)
+        artistName.translatesAutoresizingMaskIntoConstraints = false
+        artistName.rowHeight = UITableView.automaticDimension
+        artistName.estimatedRowHeight = 80
+        artistName.delegate = self // datasource/delegate
+        artistName.dataSource = self
+        artistName.register(SongTableViewCell.self, forCellReuseIdentifier: SongTableViewCell.reuseID) // registering cell
+        return artistName
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,16 +45,25 @@ class SongsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.songs = songsArray
                 self.tableView.reloadData()
+                self.artistName.reloadData()
             }
         }
         
         view.addSubview(tableView)
+        view.addSubview(artistName)
         
         view.addConstraints([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        
+        view.addConstraints([
+            artistName.topAnchor.constraint(equalTo: view.topAnchor),
+            artistName.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            artistName.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            artistName.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
     }
 }
@@ -58,7 +78,7 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
         let song = songs[indexPath.row]
         
         cell.textLabel?.text = song.name
-        //cell.textLabel?.text = artist.artistName
+        
         
         return cell
     }
