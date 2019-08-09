@@ -9,7 +9,6 @@
 import Foundation
 
 struct iTunesAPI {
-    // CHANGE HEADER TO REMOVE MY NAME
     static func fetchData(numberOfSongs: String, completion: @escaping ([Song], Error?) -> Void) {
         let urlString = "https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/all/\(numberOfSongs)/explicit.json"
         let url = URL(string: urlString)!

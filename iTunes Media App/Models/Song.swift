@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Song { // CHANGE HEADER
+struct Song { 
     let artistName: String
     let name: String
     let imageURL: String
