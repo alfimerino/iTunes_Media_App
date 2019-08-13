@@ -11,27 +11,20 @@ import UIKit
 
 class SongsViewController: UIViewController {
     var songs = [Song]()
-    
+    // Why lazy?:
     lazy var tableView: UITableView = {
+        // Does this create the initial view? What does view.frame do?
         let tableView = UITableView(frame: view.frame)
+        // This allows you to provide all of the constraints you want,
+        // but you must provide all of the constraints without issues.
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 80
+        // Why declare delegate here?
         tableView.delegate = self // datasource/delegate
         tableView.dataSource = self
+        // Why do you need ReuseIdentifier ? What does this do ?
+        // This points the tableView to the correct Cell right?
         tableView.register(SongTableViewCell.self, forCellReuseIdentifier: SongTableViewCell.reuseID) // registering cell
         return tableView
-    }()
-    
-    lazy var artistName: UITableView = {
-        let artistName = UITableView(frame: view.frame)
-        artistName.translatesAutoresizingMaskIntoConstraints = false
-        artistName.rowHeight = UITableView.automaticDimension
-        artistName.estimatedRowHeight = 80
-        artistName.delegate = self // datasource/delegate
-        artistName.dataSource = self
-        artistName.register(SongTableViewCell.self, forCellReuseIdentifier: SongTableViewCell.reuseID) // registering cell
-        return artistName
     }()
     
     override func viewDidLoad() {
@@ -40,16 +33,17 @@ class SongsViewController: UIViewController {
         navigationItem.title = "Top Songs"
         // TODO: refactor numberOfSongs to be an int
         // maybe an enum?
+        // What does error in DispatchQueue do here? Why is it here?
+        // Why arent any other things from the Song.wift file being called here ?
         iTunesAPI.fetchData(numberOfSongs: "25") { songsArray, error in
             DispatchQueue.main.async {
                 self.songs = songsArray
+                // Why do you need to reloadData() here?
                 self.tableView.reloadData()
-                self.artistName.reloadData()
             }
         }
-        
+        // What the fcck is a Subview anyway? Why is it being called here?
         view.addSubview(tableView)
-        view.addSubview(artistName)
         
         view.addConstraints([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -57,28 +51,24 @@ class SongsViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
-        
-        view.addConstraints([
-            artistName.topAnchor.constraint(equalTo: view.topAnchor),
-            artistName.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            artistName.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            artistName.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
     }
 }
-
+// Why does the viewController need to be extended anyway?
 extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SongTableViewCell.reuseID, for: indexPath)
+        // How do you know to do as! ? How/why do you know to add withIdentifier ?
+        let cell = tableView.dequeueReusableCell(withIdentifier: SongTableViewCell.reuseID, for: indexPath) as! SongTableViewCell
         let song = songs[indexPath.row]
-        
-        cell.textLabel?.text = song.name
-        
-        
+        // Why do you use configure here anyway? 
+            // Why is this line not good anymore ? Is it because we use configure? 
+//        cell.textLabel?.text = song.name
+
+        cell.configure(song)
+
         return cell
     }
 }

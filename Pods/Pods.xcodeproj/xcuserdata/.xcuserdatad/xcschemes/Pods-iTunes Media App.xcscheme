@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "29E472D5080F85C52C6F1B114F380A42"
+               BlueprintIdentifier = "43A8DA9960AED965555F8B5EECBA5C9F"
                BlueprintName = "Pods-iTunes Media App"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "Pods-iTunes Media App.framework">
