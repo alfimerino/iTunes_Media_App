@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 
 class SongTableViewCell: UITableViewCell {
-    // How do you declare dynamic if this is static? Does that even exist?
-    // Why describing?
     static let reuseID = String(describing: self)
-    // Why lazy ? 
+    
     private lazy var songNameLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
@@ -55,16 +53,13 @@ class SongTableViewCell: UITableViewCell {
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.distribution = .equalSpacing
-        stackView.spacing = 5
+        stackView.spacing = 8
         return stackView
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //Cells have content view instead of Views
-        // Why? How do you know this?
         contentView.addSubview(stackView)
-        // Why does content view an additional set of constraints? 
         contentView.addConstraints([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -79,11 +74,8 @@ class SongTableViewCell: UITableViewCell {
         artistNameLabel.text = song.artistName
 //        genreLabel.text = song.genreName
     }
-    // Why is this a required init?
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
-
