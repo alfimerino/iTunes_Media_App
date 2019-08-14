@@ -17,7 +17,8 @@ class SongTableViewCell: UITableViewCell {
     private lazy var songNameLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 16)
+        lbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+        //lbl.font = UIFont.boldSystemFont(ofSize: 16)
         lbl.textAlignment = .left
         return lbl
     }()
@@ -25,7 +26,7 @@ class SongTableViewCell: UITableViewCell {
     private lazy var artistNameLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 16)
+        lbl.font = UIFont(name: "HelveticaNeue", size: 14)
         lbl.textAlignment = .left
         return lbl
     }()
@@ -51,8 +52,10 @@ class SongTableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .leading
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        stackView.isLayoutMarginsRelativeArrangement = true
         stackView.distribution = .equalSpacing
-        stackView.spacing = 8
+        stackView.spacing = 5
         return stackView
     }()
     
