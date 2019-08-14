@@ -64,7 +64,7 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SongTableViewCell.reuseID, for: indexPath) as! SongTableViewCell
         let song = songs[indexPath.row]
         // Why do you use configure here anyway? 
-            // Why is this line not good anymore ? Is it because we use configure? 
+            // Why is this line not good anymore ? Is it because we use configure?
 //        cell.textLabel?.text = song.name
 
         cell.configure(song)

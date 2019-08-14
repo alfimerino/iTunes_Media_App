@@ -71,9 +71,10 @@ class SongTableViewCell: UITableViewCell {
     }
     
     func configure(_ song: Song) {
-        lengthLabel.text = song.imageURL
+//        lengthLabel.text = song.imageURL
         songNameLabel.text = song.name
         artistNameLabel.text = song.artistName
+//        genreLabel.text = song.genreName
     }
     // Why is this a required init?
     required init?(coder aDecoder: NSCoder) {
