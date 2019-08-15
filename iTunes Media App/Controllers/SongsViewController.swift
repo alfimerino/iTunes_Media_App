@@ -28,6 +28,8 @@ class SongsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(tableView)
+        
         navigationItem.title = "Top Songs"
         iTunesAPI.fetchData(numberOfSongs: "25") { songsArray, error in
             DispatchQueue.main.async {
@@ -36,8 +38,7 @@ class SongsViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        view.addSubview(tableView)
-        
+
         view.addConstraints([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -57,12 +58,39 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
         let song = songs[indexPath.row]
 
         // Added Accessory Button
-        let imageView: UIImageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 20, height: 20))
-        imageView.image = UIImage(imageLiteralResourceName: "fav_star")
-        imageView.contentMode = .scaleAspectFit
-        cell.accessoryView = imageView
+//        let imageView: UIImageView
+//        imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 20, height: 20))
+//        imageView.image = UIImage(imageLiteralResourceName: "fav_star")
+//        imageView.contentMode = .scaleAspectFit
+//        cell.accessoryView = imageView
+        cell.accessoryType = .none
 
         cell.configure(song)
         return cell
     }
+    
+    func accessoryButtonTapped(_ sender: UIButton) {
+        let imageView: UIImageView
+        imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 20, height: 20))
+        imageView.image = UIImage(imageLiteralResourceName: "fav_star")
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .red
+        print("Button Pressed")
+    }
+
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if tableView.cellForRow(at: indexPath)?.accessoryView == UIImageView(image: #imageLiteral(resourceName: "star-8-48")) {
+//            tableView.cellForRow(at: indexPath)?.accessoryView = UIImageView(image: #imageLiteral(resourceName: "fav_star"))
+//        } else {
+//            tableView.cellForRow(at: indexPath)?.accessoryView = UIImageView(image: #imageLiteral(resourceName: "star-8-48"))
+//        }
+        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+        }
+        
+    }
+    
 }
