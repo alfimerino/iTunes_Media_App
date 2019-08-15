@@ -1,0 +1,6 @@
+framework module Pods_iTunes_Media_App {
+  umbrella header "Pods-iTunes Media App-umbrella.h"
+
+  export *
+  module * { export * }
+}

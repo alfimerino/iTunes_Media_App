@@ -12,5 +12,8 @@ struct Song {
     let artistName: String
     let name: String
     let imageURL: String
+    // Added 
+//    let length: String
+//    let genreName: String
 }
 

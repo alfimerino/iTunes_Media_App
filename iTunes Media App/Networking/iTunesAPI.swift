@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Explain this whole thing..
 struct iTunesAPI {
     static func fetchData(numberOfSongs: String, completion: @escaping ([Song], Error?) -> Void) {
         let urlString = "https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/all/\(numberOfSongs)/explicit.json"
@@ -33,6 +34,7 @@ struct iTunesAPI {
                     let artistName: String
                     let name: String
                     let artworkUrl100: String
+//                    let genreName: String
                 }
                 
                 let welcomeData = try JSONDecoder().decode(Welcome.self, from: data)
