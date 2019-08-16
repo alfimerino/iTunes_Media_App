@@ -8,41 +8,37 @@
 
 import Foundation
 import UIKit
-
+// MARK: -
 class SongTableViewCell: UITableViewCell {
     static let reuseID = String(describing: self)
     
     private lazy var songNameLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = .black
-        lbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
-        //lbl.font = UIFont.boldSystemFont(ofSize: 16)
-        lbl.textAlignment = .left
-        return lbl
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        return label
     }()
     
     private lazy var artistNameLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = .black
-        lbl.font = UIFont(name: "HelveticaNeue", size: 14)
-        lbl.textAlignment = .left
-        return lbl
+        let label = UILabel()
+        label.textColor = .black
+//        label.font = UIFont(name: "HelveticaNeue", size: 14)
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        return label
     }()
     
     private lazy var genreLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 16)
-        lbl.textAlignment = .left
-        return lbl
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
     }()
     
     private lazy var lengthLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 16)
-        lbl.textAlignment = .left
-        return lbl
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
     }()
     
     private lazy var stackView: UIStackView = {
@@ -52,7 +48,7 @@ class SongTableViewCell: UITableViewCell {
         stackView.alignment = .leading
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.spacing = 8
         return stackView
     }()
@@ -69,10 +65,8 @@ class SongTableViewCell: UITableViewCell {
     }
     
     func configure(_ song: Song) {
-//        lengthLabel.text = song.imageURL
         songNameLabel.text = song.name
         artistNameLabel.text = song.artistName
-//        genreLabel.text = song.genreName
     }
     
     required init?(coder aDecoder: NSCoder) {
