@@ -56,13 +56,6 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SongTableViewCell.reuseID, for: indexPath) as! SongTableViewCell
         let song = songs[indexPath.row]
-
-        // Added Accessory Button
-//        let imageView: UIImageView
-//        imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 20, height: 20))
-//        imageView.image = UIImage(imageLiteralResourceName: "fav_star")
-//        imageView.contentMode = .scaleAspectFit
-//        cell.accessoryView = imageView
         cell.accessoryType = .none
 
         cell.configure(song)
@@ -80,17 +73,11 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if tableView.cellForRow(at: indexPath)?.accessoryView == UIImageView(image: #imageLiteral(resourceName: "star-8-48")) {
-//            tableView.cellForRow(at: indexPath)?.accessoryView = UIImageView(image: #imageLiteral(resourceName: "fav_star"))
-//        } else {
-//            tableView.cellForRow(at: indexPath)?.accessoryView = UIImageView(image: #imageLiteral(resourceName: "star-8-48"))
-//        }
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
         } else {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
-        
     }
     
 }

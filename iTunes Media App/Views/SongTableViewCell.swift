@@ -22,7 +22,6 @@ class SongTableViewCell: UITableViewCell {
     private lazy var artistNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-//        label.font = UIFont(name: "HelveticaNeue", size: 14)
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         return label
     }()
