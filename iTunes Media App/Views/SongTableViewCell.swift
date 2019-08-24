@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-// MARK: -
+
 class SongTableViewCell: UITableViewCell {
     static let reuseID = String(describing: self)
     
@@ -55,7 +55,7 @@ class SongTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(stackView)
-        contentView.addConstraints([
+        NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -63,7 +63,7 @@ class SongTableViewCell: UITableViewCell {
             ])
     }
     
-    func configure(_ song: Song) {
+    func configure(with song: Song) {
         songNameLabel.text = song.name
         artistNameLabel.text = song.artistName
     }

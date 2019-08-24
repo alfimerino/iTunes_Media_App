@@ -11,13 +11,13 @@ import UIKit
 
 class SongsViewController: UIViewController {
     var songs = [Song]()
-    
+    // MARK: - Properties
     lazy var tableView: UITableView = {
         
         let tableView = UITableView(frame: view.frame)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        // MARK: - Data Source
         tableView.delegate = self // datasource/delegate
         tableView.dataSource = self
         
@@ -47,7 +47,7 @@ class SongsViewController: UIViewController {
             ])
     }
 }
-
+// MARK: - 
 extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
@@ -58,7 +58,7 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
         let song = songs[indexPath.row]
         cell.accessoryType = .none
 
-        cell.configure(song)
+        cell.configure(with: song)
         return cell
     }
     
@@ -71,7 +71,6 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
         print("Button Pressed")
     }
 
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
