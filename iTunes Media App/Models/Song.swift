@@ -12,5 +12,6 @@ struct Song {
     let artistName: String
     let name: String
     let imageURL: String
+    var isSelected: Bool
 }
 

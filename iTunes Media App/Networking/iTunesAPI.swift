@@ -34,7 +34,7 @@ struct iTunesAPI {
                     let artistName: String
                     let name: String
                     let artworkUrl100: String
-//                    let genreName: String
+//                    let isSelected: Bool
                 }
                 
                 let welcomeData = try JSONDecoder().decode(Welcome.self, from: data)

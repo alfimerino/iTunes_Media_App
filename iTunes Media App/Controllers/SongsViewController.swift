@@ -25,8 +25,11 @@ class SongsViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 60
+        tableView.estimatedRowHeight = 60
         
         view.addSubview(tableView)
         
@@ -39,7 +42,7 @@ class SongsViewController: UIViewController {
             }
         }
 
-        view.addConstraints([
+        NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -47,7 +50,7 @@ class SongsViewController: UIViewController {
             ])
     }
 }
-// MARK: - 
+// MARK: - Methods
 extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
@@ -57,20 +60,11 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SongTableViewCell.reuseID, for: indexPath) as! SongTableViewCell
         let song = songs[indexPath.row]
         cell.accessoryType = .none
-
+        
         cell.configure(with: song)
         return cell
     }
-    
-    func accessoryButtonTapped(_ sender: UIButton) {
-        let imageView: UIImageView
-        imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 20, height: 20))
-        imageView.image = UIImage(imageLiteralResourceName: "fav_star")
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .red
-        print("Button Pressed")
-    }
-
+ 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
@@ -78,5 +72,6 @@ extension SongsViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
     }
+    
     
 }
